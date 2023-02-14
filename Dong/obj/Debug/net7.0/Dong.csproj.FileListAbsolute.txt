@@ -273,3 +273,12 @@ C:\Users\mjdh1\source\repos\Dong\Dong\obj\Debug\net7.0\refint\Dong.dll
 C:\Users\mjdh1\source\repos\Dong\Dong\obj\Debug\net7.0\Dong.pdb
 C:\Users\mjdh1\source\repos\Dong\Dong\obj\Debug\net7.0\Dong.genruntimeconfig.cache
 C:\Users\mjdh1\source\repos\Dong\Dong\obj\Debug\net7.0\ref\Dong.dll
+C:\Users\mjdh1\source\repos\Dong\Dong\obj\Debug\net7.0\Dong.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\libman.json
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\mjdh1\source\repos\Dong\Dong\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

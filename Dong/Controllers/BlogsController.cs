@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Dong.Data;
 using Dong.Models;
 
+
 namespace Dong.Controllers
 {
     public class BlogsController : Controller
@@ -42,7 +43,12 @@ namespace Dong.Controllers
                 return NotFound();
             }
 
-            return View(blog);
+            blog.Views++;
+
+			_context.Update(blog);
+			await _context.SaveChangesAsync();
+
+			return View(blog);
         }
 
         // GET: Blogs/Create
@@ -56,7 +62,7 @@ namespace Dong.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Date,Views")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,Title,Date,Views,Contents")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +94,7 @@ namespace Dong.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Date,Views")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Date,Views,Contents")] Blog blog)
         {
             if (id != blog.Id)
             {
