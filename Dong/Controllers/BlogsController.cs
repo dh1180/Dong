@@ -42,7 +42,7 @@ namespace Dong.Controllers
             {
                 return NotFound();
             }
-
+            
             blog.Views++;
 
 			_context.Update(blog);
