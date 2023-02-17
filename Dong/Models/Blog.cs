@@ -10,5 +10,6 @@ namespace Dong.Models
         public DateTime Date { get; set; }
         public int Views { get; set; }
         public string? Contents { get; set; }
+        public string? Category { get; set; }
     }
 }

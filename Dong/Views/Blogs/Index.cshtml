@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dong.Models.Blog>
+﻿@model Dong.Models.BlogCategoryModel
 
 @{
 	ViewData["Title"] = "Blog";
@@ -14,25 +14,41 @@
 			<p>
 				<a asp-action="Create">Create New</a>
 			</p>
+
+			<form asp-controller="Blogs" asp-action="Index" method="get">
+				<p>
+
+					<select asp-for="BlogCategory" asp-items="Model.Category">
+						<option value="">All</option>
+					</select>
+
+					Title: <input type="text" asp-for="SearchString" />
+					<input type="submit" value="Filter" />
+				</p>
+			</form>
+
 			<table class="table">
 				<thead>
 					<tr>
 						<th>
-							@Html.DisplayNameFor(model => model.Title)
+							@Html.DisplayNameFor(model => model.Blogs[0].Title)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.Date)
+							@Html.DisplayNameFor(model => model.Blogs[0].Date)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.Views)
+							@Html.DisplayNameFor(model => model.Blogs[0].Category)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.Contents)
+							@Html.DisplayNameFor(model => model.Blogs[0].Views)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Blogs[0].Contents)
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach (var item in Model)
+					@foreach (var item in Model.Blogs)
 					{
 						<tr>
 							<td>
@@ -40,6 +56,9 @@
 							</td>
 							<td>
 								@Html.DisplayFor(modelItem => item.Date)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Category)
 							</td>
 							<td>
 								@Html.DisplayFor(modelItem => item.Views)

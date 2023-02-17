@@ -21,11 +21,38 @@ namespace Dong.Controllers
         }
 
         // GET: Blogs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string blogCategory, string searchString)
         {
-              return _context.Blog != null ? 
-                          View(await _context.Blog.ToListAsync()) :
-                          Problem("Entity set 'DongContext.Blog'  is null.");
+            if (_context.Blog == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Blog
+                                            orderby m.Category
+                                            select m.Category;
+            var blogs = from m in _context.Blog
+                         select m;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                blogs = blogs.Where(s => s.Title!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(blogCategory))
+            {
+                blogs = blogs.Where(x => x.Category == blogCategory);
+            }
+
+            var movieGenreVM = new BlogCategoryModel
+            {
+                Category = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Blogs = await blogs.ToListAsync()
+            };
+
+            return View(movieGenreVM);
+
         }
 
         // GET: Blogs/Details/5
@@ -62,7 +89,7 @@ namespace Dong.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Date,Views,Contents")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,Title,Date,Views,Contents,Category")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +121,7 @@ namespace Dong.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Date,Views,Contents")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Date,Views,Contents,Category")] Blog blog)
         {
             if (id != blog.Id)
             {
